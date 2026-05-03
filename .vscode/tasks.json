@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cargo test macros",
+      "type": "shell",
+      "command": "cargo",
+      "args": [
+        "test",
+        "--package",
+        "hello-world",
+        "--bin",
+        "hello-world",
+        "--",
+        "macros",
+        "--exact",
+        "--nocapture",
+        "--include-ignored"
+      ],
+      "problemMatcher": ["$rustc"],
+      "options": {
+        "cwd": "${workspaceFolder}/basics/hello-world"
+      }
+    }
+  ]
+}
