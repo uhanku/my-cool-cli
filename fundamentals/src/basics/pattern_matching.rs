@@ -68,6 +68,42 @@ fn run() {
 
     let ex10vec = vec![99, 98, 97, 96, 95, 94, 93, 92, 91, 90];
     ex10(ex10vec);
+
+    let ex10x = rand::thread_rng().gen_range(0..=10);
+    let ex10y = rand::thread_rng().gen_range(0..=10);
+
+    ex11(Rectangle {
+        width: ex10x,
+        height: ex10y,
+    });
+
+    let ex12x = rand::thread_rng().gen_range(0..=3);
+    let ex12vec = vec![
+        Operation::Add(7, 7),
+        Operation::Subtract(7, -7),
+        Operation::Multiply(7, 7),
+        Operation::Divide(7, 7),
+    ];
+
+    ex12(&ex12vec[ex12x]);
+
+    let ex13vec = vec![
+        Item::Potion,
+        Item::Sword { damage: 100 },
+        Item::Shield { defense: 20 },
+        Item::Coin(9991029),
+    ];
+    let ex13x = rand::thread_rng().gen_range(0..ex13vec.len());
+
+    let ex13 = ex13(&ex13vec[ex13x]);
+
+    println!("ex13: {ex13}");
+
+    let ex14vec = vec!["help", "exit", "echo hello, world!", "something else"];
+    let ex14x = rand::thread_rng().gen_range(0..ex14vec.len());
+
+    println!("ex14x: {ex14x}");
+    ex14(&ex14vec[ex14x]);
 }
 
 fn ex1<'a>(n: i32) -> &'a str {
@@ -205,4 +241,85 @@ fn ex10(mut v: Vec<i32>) {
         print!(" {}", v);
     }
     println!();
+}
+
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn ex11<'a>(rec: Rectangle) -> &'a str {
+    match rec {
+        Rectangle { width, height } if width == height => "square",
+        Rectangle { width, height } if width > height => "landscape",
+        Rectangle { height, width } if height > width => "portrait",
+        Rectangle {
+            width: _,
+            height: _,
+        } => "others",
+    }
+}
+
+enum Operation {
+    Add(i32, i32),
+    Subtract(i32, i32),
+    Multiply(i32, i32),
+    Divide(i32, i32),
+}
+
+fn ex12(op: &Operation) -> i32 {
+    match op {
+        Operation::Add(a, b) => a + b,
+        Operation::Subtract(a, b) => a - b,
+        Operation::Multiply(a, b) => a * b,
+        Operation::Divide(_, 0) => 0,
+        Operation::Divide(a, b) => a / b,
+    }
+}
+
+enum Item {
+    Potion,
+    Sword { damage: u32 },
+    Shield { defense: u32 },
+    Coin(u32),
+}
+
+fn ex13(it: &Item) -> String {
+    match it {
+        Item::Potion => String::from("A healing potion"),
+        Item::Sword { damage } => String::from("A sword with ") + &damage.to_string() + " damage",
+        Item::Shield { defense } => {
+            String::from("A shield with ") + &defense.to_string() + "defense"
+        }
+        Item::Coin(coin) => coin.to_string() + "coins",
+    }
+}
+
+enum ParsedCommand {
+    Help,
+    Exit,
+    Echo(String),
+    Unknown(()),
+}
+
+impl ParsedCommand {
+    fn print(&self) {
+        match &self {
+            ParsedCommand::Help => println!("help"),
+            ParsedCommand::Exit => println!("exit"),
+            ParsedCommand::Echo(e) => println!("{}", e),
+            ParsedCommand::Unknown(()) => println!("unknown!"),
+        }
+    }
+}
+
+fn ex14(pc: &str) -> ParsedCommand {
+    let s = match pc {
+        "help" => ParsedCommand::Help,
+        "exit" => ParsedCommand::Exit,
+        s if s.starts_with("echo ") => ParsedCommand::Echo(s["echo ".len()..].to_string()),
+        _ => ParsedCommand::Unknown(()),
+    };
+    s.print();
+    s
 }
