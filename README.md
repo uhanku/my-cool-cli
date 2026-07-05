@@ -5,9 +5,9 @@
 <p align="center"><strong>MY COOL CLI</strong></p>
 
 <p align="center">
-  <img alt="Rust" src="https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white" />
-  <img alt="Cargo" src="https://img.shields.io/badge/Cargo-0B3A53?logo=cargo&logoColor=white" />
-  <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" />
+  <img alt="Rust" src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" />
+  <img alt="Cargo" src="https://img.shields.io/badge/Cargo-0B3A53?style=for-the-badge&logo=cargo&logoColor=white" />
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
 </p>
 
 This is a Rust learning project for building a CLI tool in small, testable steps.
