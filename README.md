@@ -10,11 +10,8 @@
   <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" />
 </p>
 
-# Plan To Study Rust
-
-## Overview
-
-`MY COOL CLI` is a Rust learning project for building a CLI tool in small, testable steps.
+This is a Rust learning project for building a CLI tool in small, testable steps.
+<br>
 The repository is organized around a fundamentals track and a set of practical CLI ideas to explore.
 
 ## Study Plan
