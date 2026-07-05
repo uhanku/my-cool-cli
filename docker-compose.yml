@@ -1,0 +1,7 @@
+services:
+  fundamentals:
+    image: rust:1.89
+    working_dir: /workspace/fundamentals
+    volumes:
+      - ./:/workspace
+    command: cargo test
